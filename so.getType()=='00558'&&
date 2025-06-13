@@ -1,0 +1,49 @@
+so.getType()=='00558'&&
+(so.reference4=='КЕТЧЕРСКАЯ транзит'||
+so.reference4=='БЕГОВАЯ ТРАНЗИТ'||
+so.reference4=='АВТОСПЕЙС ООО(М)(бывш.Галс-Трейд)'||
+so.reference4=='ВЕШНЯКИ'||
+so.reference4.contains('МКАД-6 ООО')||
+so.reference4=='Подольск (М)'||
+so.reference4=='ТУЛА (малая розница)'||
+so.reference4=='Авто-Альянс (Екатеринбург)'||
+so.reference4=='КРАСНОГОРСК СТО (покупатель)'||
+so.reference4=='Авто-Альянс (УФА)'||
+so.reference4=='Авто-Альянс (Уфа)'||
+so.reference4=='Авто-Альянс (Уфа 2)'||
+so.reference4=='Нефтекамск ТРАНЗИТ'||
+so.reference4=='Ижевск  (Уфа 3)'||
+so.reference4=='ПРОЛЕТАРКА (покупатель)')&&
+(orderedQty<'100' && lineCount<'30' && volume<'0.096')
+
+
+
+hiLog.channelName.contains('SO')&&
+hiLog.soH.type=='00558'||
+hiLog.soH.reference10=='Л6666'
+coordinator.messageHandler.hasErrors() == false &&
+
+
+coordinator.messageHandler.hasErrors() == false &&
+hiLog.channelName.contains('SO')&&
+(hiLog.soH.type=='00558'||
+ hiLog.soH.type=='00101'||
+ hiLog.soH.reference10=='Л6666')
+
+
+
+ ((obj.wave == null && !obj.soNumber.contains('.') && obj.getComments('CLIENTTER').size() > 0) ||
+(obj.wave != null && obj.wave.planning == 0 && !obj.soNumber.contains('.')&& obj.getComments('CLIENTTER').size() > 0))&&
+obj.pickingAllowed == 1 &&
+!(obj.getType()=='00090'||
+obj.getType()=='00076'||
+obj.getType()=='00558'||
+obj.getType()=='00322'||
+obj.getType()=='00560'||
+obj.getType()=='00667'||
+obj.getType()=='00101')&&
+obj.reference10!='Л2924'&&
+obj.reference10!='Л6666'&&
+obj.reference10!='Н5497'&&
+obj.reference10!='А3762'||
+(obj.getType()=='00090' && obj.reference10=='С3509')

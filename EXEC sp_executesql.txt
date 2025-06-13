@@ -1,0 +1,121 @@
+EXEC sp_executesql 
+	N'-- Хомич Д. 19.08.2024 RT 1568991
+DECLARE @startdate DATETIME2(0) = @P0 
+DECLARE @enddate DATETIME2(0) = @P1
+DECLARE @screenname NVARCHAR(100) = @P2
+DECLARE @request NVARCHAR(2000) = @P3
+DECLARE @reply NVARCHAR(1000) = @P4
+DECLARE @login NVARCHAR(50) =  @P5
+DECLARE @dolznost NVARCHAR(40) = @P6
+DECLARE @profile NVARCHAR(100) = @P7
+DECLARE @device NVARCHAR(50) =  @P8
+
+SELECT CONVERT(DATETIME2(0), timestamp) AS date
+	--CONVERT(varchar(19), timestamp,104) AS date
+	,instockrfscreenName AS screenname
+	,message_request AS request
+	,message_reply AS reply
+	,instockrflogin AS login
+	,emp.name AS dolznost
+	,tap.name AS profile
+	,instockrfdevice AS device
+	,REPLACE(CASE 
+			WHEN REPLACE((REPLACE(instockrfelapsedTime, ''['', '''')), '']'', '''') = ''''
+				THEN ''0''
+			ELSE REPLACE((REPLACE(instockrfelapsedTime, ''['', '''')), '']'', '''')
+			END, '',null'', '''') AS empelapsed
+	,ISNULL(elapsed_time, ''0'') AS servelapsed
+FROM dialog dl
+INNER JOIN employee em ON (dl.instockrflogin = em.LOGIN)
+INNER JOIN employee_position emp ON (emp.id = em.employee_position_id)
+INNER JOIN task_assignment_profile_h tap ON (tap.id = emp.task_assignment_profile_h_id)
+WHERE 
+      (timestamp BETWEEN @startdate AND @enddate) AND
+	  (instockrfscreenName LIKE @screenname OR @P9 ='''') AND
+	  (message_request LIKE @request OR @P10 ='''') AND 
+	  (message_reply LIKE @reply OR @P11 ='''') AND
+	  (instockrflogin LIKE @login OR @P12 ='''') AND
+	  (emp.name LIKE @dolznost OR @P13 ='''') AND
+	  (tap.name LIKE @profile OR @P14 ='''') AND
+	  (instockrfdevice LIKE @device OR @P15 ='''')
+
+
+ORDER BY timestamp DESC'
+	,N'@P0 datetime2,@P1 datetime2,@P2 varchar(8000),@P3 varchar(8000),@P4 varchar(8000),@P5 varchar(8000),@P6 varchar(8000),@P7 varchar(8000),@P8 varchar(8000),@P9 varchar(8000),@P10 varchar(8000),@P11 varchar(8000),@P12 varchar(8000),@P13 varchar(8000),@P14 varchar(8000),@P15 varchar(8000)'
+	,'2024-08-19 16:00:00'
+	,'2024-08-19 16:51:00'
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+
+EXEC sp_executesql 
+	N'-- Хомич Д. 19.08.2024 RT 1568991
+DECLARE @startdate DATETIME2(0) = @P0 
+DECLARE @enddate DATETIME2(0) = @P1
+DECLARE @screenname NVARCHAR(100) = @P2
+DECLARE @request NVARCHAR(2000) = @P3
+DECLARE @reply NVARCHAR(1000) = @P4
+DECLARE @login NVARCHAR(50) =  @P5
+DECLARE @dolznost NVARCHAR(40) = @P6
+DECLARE @profile NVARCHAR(100) = @P7
+DECLARE @device NVARCHAR(50) =  @P8
+
+SELECT CONVERT(DATETIME2(0), timestamp) AS date
+	--CONVERT(varchar(19), timestamp,104) AS date
+	,instockrfscreenName AS screenname
+	,message_request AS request
+	,message_reply AS reply
+	,instockrflogin AS login
+	,emp.name AS dolznost
+	,tap.name AS profile
+	,instockrfdevice AS device
+	,REPLACE(CASE 
+			WHEN REPLACE((REPLACE(instockrfelapsedTime, ''['', '''')), '']'', '''') = ''''
+				THEN ''0''
+			ELSE REPLACE((REPLACE(instockrfelapsedTime, ''['', '''')), '']'', '''')
+			END, '',null'', '''') AS empelapsed
+	,ISNULL(elapsed_time, ''0'') AS servelapsed
+FROM dialog dl
+INNER JOIN employee em ON (dl.instockrflogin = em.LOGIN)
+INNER JOIN employee_position emp ON (emp.id = em.employee_position_id)
+INNER JOIN task_assignment_profile_h tap ON (tap.id = emp.task_assignment_profile_h_id)
+WHERE 
+      (timestamp BETWEEN @startdate AND @enddate) AND
+	  (instockrfscreenName LIKE @screenname OR @P9 ='''') AND
+	  (message_request LIKE @request OR @P10 ='''') AND 
+	  (message_reply LIKE @reply OR @P11 ='''') AND
+	  (instockrflogin LIKE @login OR @P12 ='''') AND
+	  (emp.name LIKE @dolznost OR @P13 ='''') AND
+	  (tap.name LIKE @profile OR @P14 ='''') AND
+	  (instockrfdevice LIKE @device OR @P15 ='''')
+
+
+ORDER BY timestamp DESC'
+	,N'@P0 datetime2,@P1 datetime2,@P2 varchar(8000),@P3 varchar(8000),@P4 varchar(8000),@P5 varchar(8000),@P6 varchar(8000),@P7 varchar(8000),@P8 varchar(8000),@P9 varchar(8000),@P10 varchar(8000),@P11 varchar(8000),@P12 varchar(8000),@P13 varchar(8000),@P14 varchar(8000),@P15 varchar(8000)'
+	,'2024-08-19 16:00:00'
+	,'2024-08-19 16:51:00'
+	,''
+	,''
+	,''
+	,''
+	,''
+	,''
+	,''
+	,''
+	,''
+	,''
+	,''
+	,''
+	,''
+	,''

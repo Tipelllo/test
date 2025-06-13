@@ -1,0 +1,88 @@
+from telegram.ext import Updater, CallbackContext
+from datetime import datetime, timedelta, time as dtime
+import pytz
+
+# Ваш токен от BotFather
+TOKEN = "7954484580:AAF52BvoqxLHcrRdCMEPy4myQ3x85WWivh8"
+
+# ID группы
+GROUP_CHAT_ID = -1001921016660
+
+def calculate_delay(now, target_weekday, target_hour, target_minute, tz):
+    """
+    Вычисляет задержку (в секундах) до следующего запуска по заданному дню недели и времени.
+    target_weekday: 0 (понедельник) ... 6 (воскресенье)
+    """
+    current_weekday = now.weekday()
+    days_ahead = (target_weekday - current_weekday) % 7
+    next_date = now.date() + timedelta(days=days_ahead)
+    next_run = tz.localize(datetime.combine(next_date, dtime(hour=target_hour, minute=target_minute)))
+    if next_run <= now:
+        next_run += timedelta(days=7)
+    return (next_run - now).total_seconds()
+
+def send_reminder_wed16(context: CallbackContext):
+    context.bot.send_message(
+        chat_id=GROUP_CHAT_ID,
+        text="Напоминание: Не забудьте про проверку задач перед обновлением Марусино!"
+    )
+
+def send_reminder_mon11(context: CallbackContext):
+    text = (
+        "Напишите задачу на обновление Машково\n\n"
+        "Регулярные обновления - Машково xx.xx.20xx\n\n"
+        "Описание:\n"
+        "Просьба сегодня ближе к 14:00 обновить Машково прод - на билд прод Марусино – «текущий билд прод Марусино»"
+    )
+    context.bot.send_message(
+        chat_id=GROUP_CHAT_ID,
+        text=text
+    )
+
+def send_reminder_wed11(context: CallbackContext):
+    text = (
+        "Напишите задачу на обновление Марусино\n\n"
+        "Завершения текущего цикла регулярных обновлений - обновление JTC. И начало нового - обновление на свежий билд Марусино прод xx.xx.20xx\n\n"
+        "Описание:\n"
+        "Коллеги, просьба обновить тест Машково и предоставить общий список задач (наши + клиентские) за период билд от «(текущий билд Машково)» – "
+        "билд до (текущий – обновлённый сегодня билд тест Машково).\n"
+        "Далее, после проверки списка, обновляем сегодня после 20:00 Марусино прод, на свежий билд из теста Машково, а JTC прод на текущий билд прод Машково "
+        "«текущий билд Машково» — тоже сегодня после 20:00.\n\n"
+        "Короткая версия:\n"
+        "Сегодня, после 20:00:\n"
+        "Машково ПРОД -> JTC ПРОД\n"
+        "Машково ТЕСТ -> Марусино ПРОД"
+    )
+    context.bot.send_message(
+        chat_id=GROUP_CHAT_ID,
+        text=text
+    )
+
+def main():
+    updater = Updater(token=TOKEN, use_context=True)
+    job_queue = updater.job_queue
+    tz = pytz.timezone("Europe/Moscow")
+    now = datetime.now(tz)
+
+    # 1. Напоминание каждую среду в 16:00
+    # В python-telegram-bot версии 13: Monday=0, Tuesday=1, Wednesday=2
+    delay_wed16 = calculate_delay(now, target_weekday=2, target_hour=16, target_minute=0, tz=tz)
+    job_queue.run_repeating(send_reminder_wed16, interval=7*24*3600, first=delay_wed16)
+
+    # 2. Напоминание каждый понедельник в 11:00 (target_weekday=0)
+    delay_mon11 = calculate_delay(now, target_weekday=0, target_hour=11, target_minute=00, tz=tz)
+    job_queue.run_repeating(send_reminder_mon11, interval=7*24*3600, first=delay_mon11)
+
+    # 3. Напоминание каждую среду в 11:00 (target_weekday=2)
+    delay_wed11 = calculate_delay(now, target_weekday=2, target_hour=11, target_minute=0, tz=tz)
+    job_queue.run_repeating(send_reminder_wed11, interval=7*24*3600, first=delay_wed11)
+
+    print("Бот запущен. Напоминания запланированы:")
+    print(f" - Среда 16:00 через {delay_wed16/60:.2f} минут")
+    print(f" - Понедельник 11:00 через {delay_mon11/60:.2f} минут")
+    print(f" - Среда 11:00 через {delay_wed11/60:.2f} минут")
+    updater.start_polling()
+    updater.idle()
+
+if __name__ == '__main__':
+    main()

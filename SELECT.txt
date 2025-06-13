@@ -1,0 +1,8 @@
+SELECT
+    expected_date
+FROM
+    transport
+WHERE
+    expected_date IS NOT NULL
+ORDER BY
+    expected_date

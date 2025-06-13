@@ -1,0 +1,12 @@
+let str = "Ворота Отгрузки 05";
+console.log(str.length);
+
+
+let str = "->input=___________";
+console.log(str.length);
+
+
+
+
+let str = "!( so.getType().startsWith('DELIVE') || so.getType().startsWith('PICK') || so.getType().startsWith('LOCKER') || so.getType().startsWith('STO') || so.getType().startsWith('VENDO') || so.getType() == 'MKPLCBERU' || so.getType().startsWith('MSK') || so.reference4.startsWith('Интернет Решения (Н И)') || so.reference4.indexOf('ТЕНДЕР')!=-1 || so.reference4.indexOf('Эмекс.Ру')!=-1 || so.reference4.indexOf('Эмекс')!=-1 || so.reference10 == 'Т6858' || so.reference4.indexOf('А.П.Р')!=-1|| so.reference4.indexOf('ЮРАЛ')!=-1|| so.reference4.indexOf('КОЛОМНА-розница')!=-1|| so.reference4.indexOf('ТУЛА (малая розница)')!=-1|| so.reference4.indexOf('Перово транзит')!=-1|| so.reference4.indexOf('НЕКРАСОВКА транзит')!=-1|| so.reference4.indexOf('ГСП-2')!=-1 || so.reference4.indexOf('НТ Сервис ООО (Варшавка Новый Опт)')!=-1 || so.reference4.indexOf('СВАРОГ')!=-1|| so.reference4.indexOf('Дальзапчасть')!=-1|| so.reference4.indexOf('Козлов Сергей Витальевич')!=-1|| so.reference10 == '41940' || so.reference10 == '83790' || (so.reference4.startsWith('Ремдизель') && so.reference4.indexOf('Б/Н-Люберцы')!=-1) || so.reference4.startsWith('СОЛУ') || so.reference10 == '61063' || so.reference10 == 'М8270' || so.reference10 == 'И5793' || so.reference10 == '63826' || so.reference10 == 'К3852' || so.reference10 == 'Л3915' || so.reference10 == 'М9862' || so.reference10 == 'Т4489' || so.reference10 == 'Й0527' || so.reference10 == 'К6509' || so.reference10 == 'Ж8543' || so.reference10 == 'И5143' || so.reference10 == 'А0266' || so.reference10 == 'Л0818' || so.reference10 == 'В0296' || so.reference10 == 'Л8980' || so.reference10 == 'М0285' || so.reference10 == '39061' || so.reference10 == 'В7679' || so.reference10 == 'М0180' || (so.reference10 == '62183' && so.getType() == '00558') || so.reference4.indexOf('Вайлдберриз')!=-1 || so.reference10 == 'Й8369' || so.reference4.indexOf('АЛЬФА ООО (БН-Люберцы)')!=-1 || so.getComments('CLIENTTER').size() > 0 || (so.getComments('SO_CONTROL_PACK').size() > 0 && so.getComments('SO_CONTROL_PACK').get(0).equals('Доставка ТК')) || so.getType() == '00558' || (so.reference10 == 'НЕТОР' && so.getType() == '00041') || so.reference10 == 'Б3547' || so.reference4 == 'Евротранс (MEGAPOWER ) старый опт' || so.reference10 == '23695' );";
+console.log(str.length);
