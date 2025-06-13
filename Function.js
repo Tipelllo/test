@@ -61,3 +61,4 @@ while (num < 50) {
    console.log(num);
    num++;
 };
+
