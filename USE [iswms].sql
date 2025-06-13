@@ -205,7 +205,7 @@ WHERE
 	    reference10 ='Л6330'
 	AND    
 		
-	    transport_id IS NULL  -- просто добавлю коммент добав
+	    transport_id IS NULL  -- просто добавлю коммент добавил
     AND id =  @soHid
 
 END
