@@ -4674,3 +4674,81 @@ hiLog.soH.reference7=='09. Клиент на территории (без упа
 		</document>
 	</documents>
 </instock>
+
+
+coordinator.messageHandler.hasErrors() == false &&
+hiLog.channelName.contains("SO") &&
+!hiLog.soH.xdockPOs.size() == 1 &&
+(
+    hiLog.soH.getType().startsWith("DELIVE") ||
+    hiLog.soH.getType().startsWith("DELID") ||
+    hiLog.soH.getType().startsWith("PICK") ||
+    hiLog.soH.getType().startsWith("LOCKER") ||
+    hiLog.soH.getType().startsWith("STO") ||
+    hiLog.soH.getType().startsWith("VENDO") ||
+    hiLog.soH.getType().startsWith("MSK")
+) &&
+!(
+    hiLog.soH.getReference7() != null && (
+        hiLog.soH.getReference7().equals("05. Самовывоз на дату (с упаковкой)") ||
+        hiLog.soH.getReference7().equals("07. Самовывоз на дату (без упаковки)")
+    )
+)
+
+
+
+
+coordinator.messageHandler.hasErrors() == false &&
+hiLog.channelName.contains('SO')&&
+!hiLog.soH.xdockPOs.size()==1&&
+(hiLog.soH.getType().startsWith('DELIVE')||
+hiLog.soH.getType().startsWith('DELID')||
+hiLog.soH.getType().startsWith('PICK')||
+hiLog.soH.getType().startsWith('LOCKER')||
+hiLog.soH.getType().startsWith('STO')||
+hiLog.soH.getType().startsWith('VENDO')||
+hiLog.soH.getType().startsWith('MSK'))
+&&
+!(
+    hiLog.soH.reference7 == '05. Самовывоз на дату (с упаковкой)' ||
+    hiLog.soH.reference7 == '07. Самовывоз на дату (без упаковки)'
+)
+
+
+
+
+coordinator.messageHandler.hasErrors() == false &&
+hiLog.channelName.contains('SO')&&
+!hiLog.soH.xdockPOs.size()==1&&
+(hiLog.soH.getType().startsWith('DELIVE')||
+hiLog.soH.getType().startsWith('DELID')||
+hiLog.soH.getType().startsWith('PICK')||
+hiLog.soH.getType().startsWith('LOCKER')||
+hiLog.soH.getType().startsWith('STO')||
+hiLog.soH.getType().startsWith('VENDO')||
+hiLog.soH.getType().startsWith('MSK'))
+&&
+!(
+    hiLog.soH.reference7 == '05. Самовывоз на дату (с упаковкой)' ||
+    hiLog.soH.reference7 == '07. Самовывоз на дату (без упаковки)'
+)
+
+coordinator.messageHandler.hasErrors() == false &&
+hiLog.channelName.contains('SO')&&   
+!hiLog.soH.xdockPOs.size()==1&&
+    (hiLog.soH.type=='00101'||
+     hiLog.soH.type=='00558'||
+     hiLog.soH.type=='00560')&& 
+     (hiLog.soH.reference10=='Е8045'||
+      hiLog.soH.reference10=='М6025'||
+      hiLog.soH.reference10=='Й3717'||
+      hiLog.soH.reference10=='Й2962'||
+      hiLog.soH.reference10=='Ж4338'||
+      hiLog.soH.reference10=='С1246'||
+      hiLog.soH.reference10=='Р3793'||
+      hiLog.soH.reference10=='С6320'||
+      hiLog.soH.reference10=='О6040'||
+      hiLog.soH.reference10=='У2083'||
+      hiLog.soH.reference10=='Ф7090'||
+      hiLog.soH.reference10=='Ф3499'||
+      hiLog.soH.reference10=='Т1756')
