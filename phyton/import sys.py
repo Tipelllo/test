@@ -4,7 +4,7 @@ import pytz
 import time  # Добавил модуль time
 
 # Ваш токен от BotFather
-TOKEN = "7954484580:AAHXjGb04hawuPcWXSDQkTkxunQlucFLnRs"
+TOKEN = ""
 
 # ID группы
 GROUP_CHAT_ID = -1001921016660
